@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, ViewContainerRef } from "@angular/core";
 import { DrawerPage } from '../shared/drawer/drawer.page';
-import {TextField } from "ui/text-field";
+import { TextField } from "ui/text-field";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Switch } from 'ui/switch';
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';

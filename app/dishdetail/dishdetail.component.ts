@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject , ViewContainerRef} from "@angular/core";
 import { Dish } from "../Shared/Dish";
 import { DishService } from '../services/dish.service';
 import { Toasty } from "nativescript-toasty";
@@ -7,7 +7,11 @@ import { TNSFontIconService } from "nativescript-ngx-fonticon";
 import { Comment } from '../shared/comment';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RouterExtensions } from 'nativescript-angular/router';
+import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
+import { CommentComponent } from '../comment/comment.component';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
+import { action } from 'ui/dialogs';
 
 @Component({
     selector: 'app-dishdetail',
@@ -26,6 +30,7 @@ export class DishdetailComponent implements OnInit {
 
     constructor(private dishservice: DishService, private route: ActivatedRoute,
     private routerExtensions: RouterExtensions, private fonticon:TNSFontIconService,
+    private vcRef: ViewContainerRef, private modalService: ModalDialogService,
     private favoriteservice: FavoriteService, @Inject('BaseURL') private BaseURL){ 
 
     }
@@ -55,5 +60,44 @@ export class DishdetailComponent implements OnInit {
 
     goBack(): void {
         this.routerExtensions.back();
+    }
+    
+    actionOptions() {
+
+        let options = {
+            title: "More Options",
+            message: "Choose an Option " ,
+            cancelButtonText: "Cancel",
+            actions: ["Add To Favorites", "Add Comments"]
+        }
+
+        action(options).then((result) => {
+            if(result === "Add To Favorites") {
+                this.addToFavorites();
+            }
+            else if(result === "Add Comments"){
+                this.createModalView();
+            }
+            else{
+                console.log('No Action Taken');
+            }
+        });
+    }
+   
+    
+    createModalView(){
+        
+        let options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            fullscreen: false
+        };
+
+        this.modalService.showModal(CommentComponent, options)
+        .then((result: any) =>{
+            this.dish.comments.push(result);
+            this.dish.comments.forEach(comment => console.log(JSON.stringify(comment)));
+            const toast = new Toasty('Thanks for the feedback');
+            toast.show();
+            });             
     }
 }

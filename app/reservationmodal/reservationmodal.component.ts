@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDialogParams } from 'nativescript-angular/modal-dialog';
-import { DatePicker } from 'ui/date-picker';
+import { DatePicker } from 'ui/date-picker'; 
 import { TimePicker } from 'ui/time-picker';
 import { ListPicker } from 'ui/List-Picker';
 import { Page } from 'ui/page';
