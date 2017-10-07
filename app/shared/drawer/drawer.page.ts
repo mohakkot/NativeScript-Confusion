@@ -13,7 +13,7 @@ export class DrawerPage implements AfterViewInit {
         this._changeDetectorRef.detectChanges();
     }
 
-    protected oneDrawer() {
+    protected openDrawer() {
         this.drawer.showDrawer();
     }
 
