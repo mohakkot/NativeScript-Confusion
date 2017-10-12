@@ -9,10 +9,12 @@ import { AboutComponent } from "./about/about.component";
 import { FavoritesComponent } from './favorites/favorites.component';
 import { DishdetailComponent } from "./dishdetail/dishdetail.component";
 import { ReservationComponent } from "./reservation/reservation.component";
+import { UserAuthComponent} from "./userauth/userauth.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/home", pathMatch: "full" },
     { path: "home", component: HomeComponent },
+    { path: "auth", component: UserAuthComponent },
     { path: "about", component: AboutComponent },
     { path: "menu", component: MenuComponent },
     { path: "contact", component: ContactComponent },

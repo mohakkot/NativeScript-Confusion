@@ -23,9 +23,6 @@ export class ReservationComponent extends DrawerPage implements OnInit{
 
     reservation: FormGroup;
     showForm: boolean=true;
-    gst: string;
-    smk: string="false";
-    dati : string;
     formView: View;
     dataView: View;
     docId: string = "reservation";
@@ -60,26 +57,22 @@ export class ReservationComponent extends DrawerPage implements OnInit{
 
     onGuestChange(args){
         let textfield = <TextField>args.object;
-        this.reservation.patchValue({ guests : textfield.text});
-        this.gst=textfield.text;       
+        this.reservation.patchValue({ guests : textfield.text});   
     }
 
     onSmokingChecked(args){
         let smokingSwitch = <Switch>args.object;
         if(smokingSwitch.checked) {
             this.reservation.patchValue({smoking: true});
-            this.smk = 'true';
         }
         else{
             this.reservation.patchValue({smoking: false});
-            this.smk = 'false';
         }
     }
 
     onDateTimeChange(args){
         let textfield = <TextField>args.object;
         this.reservation.patchValue({dateTime: textfield.text});
-        this.dati = textfield.text;
     }
 
     onSubmit() {

@@ -29,13 +29,13 @@
         <GridLayout id="dataView" class="m-5" rows="auto auto auto auto" columns="*, *"
         [visibility]="!(showForm) ? 'visible' : 'collapsed'">
             <Label class="h3 m-15" row="0" col="0" text="No. of Guests" textWrap="true"></Label>
-            <Label class="h3 m-5" row="0" col="1" [text]="gst"></Label>
+            <Label class="h3 m-5" row="0" col="1" [text]="reservation.value.guests"></Label>
 
             <Label class="h3 m-15" row="1" col="0" text="Smoking?" textWrap="true"></Label>
-            <Label class="h3 m-5" row="1" col="1" [text]="smk"></Label>
+            <Label class="h3 m-5" row="1" col="1" [text]="reservation.value.smoking"></Label>
             
             <Label class="h3 m-15" row="2" col="0" text="Date and Time" textWrap="true"></Label>
-            <Label class="h3 m-5" row="2" col="1" [text]="dati | date:'medium'"></Label>
+            <Label class="h3 m-5" row="2" col="1" [text]="reservation.value.dateTime | date:'medium'"></Label>
         </GridLayout>
     </StackLayout>
 </RadSideDrawer>
